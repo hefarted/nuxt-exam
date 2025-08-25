@@ -1,5 +1,8 @@
-<script setup lang="ts"></script>
-
+<script setup>
+definePageMeta({
+  layout: false   // disables layouts
+})
+</script>
 <template>
   <main>
     <section class="container py-20">
