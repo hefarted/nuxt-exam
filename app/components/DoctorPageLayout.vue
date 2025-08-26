@@ -1,88 +1,102 @@
 <script setup lang="ts">
 /**
- * Layout-only wrapper for a doctor's profile page.
+ * Aligned doctor profile layout
  * Slots:
- *  - hero-media: photo/portrait
- *  - hero-meta:  name, title, specialization, CTAs
- *  - overview:   long bio / content
- *  - sidebar:    affiliated clinics / quick actions
+ *  - crumb-current : text for the last breadcrumb
+ *  - hero-media    : portrait / image (right column)
+ *  - hero-meta     : name/title/spec/CTAs (left column)
+ *  - overview      : main content (left in body grid)
+ *  - sidebar       : clinics / actions (right in body grid)
  */
 </script>
 
 <template>
-  <section class="container pt-10 md:pt-14">
-    <!-- Breadcrumbs -->
-    <nav class="text-sm text-gray-600">
-      <NuxtLink to="/" class="hover:underline">Home</NuxtLink>
-      <span class="mx-1">›</span>
-      <span class="text-gray-800">Doctors</span>
-      <span class="mx-1">›</span>
-      <slot name="crumb-current"><span class="text-gray-800">Doctor Name</span></slot>
-    </nav>
-
-    <!-- Hero -->
-    <div class="mt-4 grid md:grid-cols-2 gap-8 items-start">
-      <div class="rounded-2xl border border-gray-200 shadow-soft overflow-hidden bg-white min-h-[260px] flex items-center justify-center">
-        <slot name="hero-media">
-          <!-- Placeholder media -->
-          <img src="/images/doctor-placeholder.svg" alt="Doctor" class="w-full h-auto" />
+  <!-- HERO (same container & spacing as your index hero) -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 md:py-16">
+      <!-- Breadcrumbs -->
+      <nav class="text-sm text-gray-600">
+        <NuxtLink to="/" class="hover:underline">Home</NuxtLink>
+        <span class="mx-1">›</span>
+        <span class="text-gray-800">Doctors</span>
+        <span class="mx-1">›</span>
+        <slot name="crumb-current">
+          <span class="text-gray-800">Doctor Name</span>
         </slot>
-      </div>
+      </nav>
 
-      <div>
-        <slot name="hero-meta">
-          <!-- Placeholder meta -->
-          <h1 class="text-3xl md:text-4xl font-bold tracking-tight">Dr. Jane Doe</h1>
-          <p class="mt-1 text-primary font-semibold">MD, FPCP — Cardiology</p>
-          <div class="mt-3 flex flex-wrap gap-2">
-            <span class="badge">Preventive</span>
-            <span class="badge">Diagnostics</span>
-            <span class="badge">Rehab</span>
-          </div>
-          <div class="mt-4 flex gap-3">
-            <button class="btn btn-primary">Book Appointment</button>
-            <button class="btn btn-outline">Call</button>
-          </div>
-        </slot>
-      </div>
-    </div>
-
-    <!-- Body grid -->
-    <div class="mt-10 grid lg:grid-cols-3 gap-8">
-      <!-- Main content -->
-      <article class="card p-6 lg:col-span-2">
-        <slot name="overview">
-          <h2 class="text-xl font-semibold">Overview</h2>
-          <p class="mt-3 text-gray-700">
-            Short doctor biography goes here. Replace this with real content later.
-          </p>
-          <h3 class="mt-6 font-semibold">Qualifications</h3>
-          <ul class="mt-2 list-disc list-inside text-gray-700 text-sm">
-            <li>Board-certified</li>
-            <li>Professional memberships</li>
-            <li>Years of experience</li>
-          </ul>
-        </slot>
-      </article>
-
-      <!-- Sidebar -->
-      <aside class="space-y-6">
-        <div class="card p-6">
-          <slot name="sidebar">
-            <h2 class="text-xl font-semibold">Affiliated Clinics</h2>
-            <div class="mt-4 space-y-4">
-              <div class="border-b last:border-0 border-gray-100 pb-4">
-                <a class="font-medium hover:underline">Green Valley Medical Center</a>
-                <p class="text-sm text-gray-600 mt-1">123 Green Ave, Mandaluyong</p>
-                <div class="mt-2 flex flex-wrap gap-3 text-sm text-gray-600">
-                  <span class="flex items-center gap-1"><img src="/images/icons/phone.svg" class="h-4 w-4" /> Call</span>
-                  <span class="flex items-center gap-1"><img src="/images/icons/map-pin.svg" class="h-4 w-4" /> Directions</span>
-                </div>
-              </div>
+      <!-- Grid matches index: md:grid-cols-5; left 3, right 2 -->
+      <div class="mt-4 grid gap-8 md:grid-cols-5 items-start">
+        <!-- LEFT: meta -->
+        <div class="md:col-span-3">
+          <slot name="hero-meta">
+            <div class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+              Trusted Care
             </div>
+            <h1 class="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gray-900">
+              Dr. Jane Doe
+            </h1>
+            <p class="mt-2 text-base sm:text-lg text-gray-700">
+              MD, FPCP · Cardiology
+            </p>
+            <p class="mt-4 text-gray-600 max-w-2xl">
+              Short biography goes here. Replace this placeholder with real content.
+            </p>
+            <div class="mt-6 flex flex-wrap items-center gap-3">
+              <button class="inline-flex items-center justify-center rounded-xl bg-gray-900 px-5 py-3 text-sm font-semibold text-white hover:opacity-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400">
+                Book an Appointment
+              </button>
+              <button class="inline-flex items-center justify-center rounded-xl border border-gray-300 px-5 py-3 text-sm font-semibold text-gray-800 hover:bg-gray-50">
+                Call Clinic
+              </button>
+            </div>
+            <p class="mt-3 text-xs text-gray-500">
+              Serving families in BGC and Makati.
+            </p>
           </slot>
         </div>
-      </aside>
+
+        <!-- RIGHT: media -->
+        <div class="md:col-span-2">
+          <div class="mx-auto aspect-[4/3] w-full max-w-md overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+            <slot name="hero-media">
+              <img src="/images/doctor-placeholder.svg" alt="Doctor portrait" class="h-full w-full object-cover" />
+            </slot>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BODY (aligned to your section rhythm) -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-12">
+      <div class="grid gap-8 lg:grid-cols-3">
+        <!-- Main content -->
+        <article class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm lg:col-span-2">
+          <slot name="overview">
+            <h2 class="text-xl font-semibold">Overview</h2>
+            <p class="mt-3 text-gray-700">
+              Replace with the doctor’s full biography and details.
+            </p>
+          </slot>
+        </article>
+
+        <!-- Sidebar -->
+        <aside>
+          <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+            <slot name="sidebar">
+              <h2 class="text-xl font-semibold">Affiliated Clinics</h2>
+              <div class="mt-4 space-y-4">
+                <div class="border-b last:border-0 border-gray-100 pb-4">
+                  <span class="font-medium">Clinic name</span>
+                  <p class="text-sm text-gray-600 mt-1">Clinic address here</p>
+                </div>
+              </div>
+            </slot>
+          </div>
+        </aside>
+      </div>
     </div>
   </section>
 </template>
