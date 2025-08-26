@@ -1,0 +1,102 @@
+[
+  {
+    "slug": "dr-maria-d-santos",
+    "name": "Dr. Maria D. Santos",
+    "title": "MD, FPPS",
+    "specialization": "Pediatrician",
+    "bio": "Board-certified pediatrician with over 10 years of experience in preventive care, immunization programs, and child wellness counseling. Passionate about empowering parents through clear, evidence-based guidance.",
+    "photo": "/images/dr-santos.jpg",
+    "clinics": ["healthway-bgc", "makati-med"],
+    "featured": true
+  },
+  {
+    "slug": "john-reyes",
+    "name": "Dr. John Reyes",
+    "title": "MD, FPSGS",
+    "specialization": "General Surgeon",
+    "bio": "Experienced in minimally invasive and laparoscopic surgery, with a focus on patient safety and enhanced recovery after surgery.",
+    "photo": "/images/doctor-placeholder.jpg",
+    "clinics": ["makati-med"],
+    "featured": false
+  },
+  {
+    "slug": "ana-cruz",
+    "name": "Dr. Ana Cruz",
+    "title": "MD, FPCP",
+    "specialization": "Cardiologist",
+    "bio": "Specialist in cardiovascular disease prevention, diagnosis, and treatment.",
+    "photo": "/images/doctor-placeholder.jpg",
+    "clinics": ["heart-center"],
+    "featured": false
+  },
+  {
+    "slug": "michael-lee",
+    "name": "Dr. Michael Lee",
+    "title": "MD, FPDS",
+    "specialization": "Dermatologist",
+    "bio": "Focused on skin health, cosmetic dermatology, and treatment of chronic skin conditions.",
+    "photo": "/images/doctor-placeholder.jpg",
+    "clinics": ["derma-clinic", "healthway-bgc"],
+    "featured": false
+  },
+  {
+    "slug": "sofia-garcia",
+    "name": "Dr. Sofia Garcia",
+    "title": "MD, FPNA",
+    "specialization": "Neurologist",
+    "bio": "Dedicated to diagnosing and managing neurological disorders such as epilepsy, stroke, and migraines.",
+    "photo": "/images/doctor-placeholder.jpg",
+    "clinics": ["makati-med", "neuro-center"],
+    "featured": false
+  },
+  {
+    "slug": "carlos-tan",
+    "name": "Dr. Carlos Tan",
+    "title": "MD, FPOA",
+    "specialization": "Orthopedic Surgeon",
+    "bio": "Specialist in musculoskeletal injuries and sports medicine.",
+    "photo": "/images/doctor-placeholder.jpg",
+    "clinics": ["makati-med"],
+    "featured": false
+  },
+  {
+    "slug": "emily-chan",
+    "name": "Dr. Emily Chan",
+    "title": "MD, FPOGS",
+    "specialization": "Obstetrician-Gynecologist",
+    "bio": "Focused on women’s health, pregnancy, and reproductive care.",
+    "photo": "/images/doctor-placeholder.jpg",
+    "clinics": ["bgc-women-health"],
+    "featured": false
+  },
+  {
+    "slug": "antonio-delacruz",
+    "name": "Dr. Antonio Dela Cruz",
+    "title": "MD, FPARM",
+    "specialization": "Rheumatologist",
+    "bio": "Expert in autoimmune diseases and chronic joint conditions.",
+    "photo": "/images/doctor-placeholder.jpg",
+    "clinics": ["makati-med"],
+    "featured": false
+  },
+  {
+    "slug": "grace-mendoza",
+    "name": "Dr. Grace Mendoza",
+    "title": "MD, FPSO",
+    "specialization": "Ophthalmologist",
+    "bio": "Specialist in cataract and glaucoma management.",
+    "photo": "/images/doctor-placeholder.jpg",
+    "clinics": ["eye-center"],
+    "featured": false
+  },
+  {
+    "slug": "daniel-fernandez",
+    "name": "Dr. Daniel Fernandez",
+    "title": "MD, FPAR",
+    "specialization": "Radiologist",
+    "bio": "Provides diagnostic imaging and interventional radiology services.",
+    "photo": "/images/doctor-placeholder.jpg",
+    "clinics": ["makati-med"],
+    "featured": false
+  }
+]

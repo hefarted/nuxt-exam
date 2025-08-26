@@ -1,5 +1,20 @@
 <!-- /pages/index.vue -->
 <script setup lang="ts">
+import type { Doctor } from '../../types/doctor'
+
+const { data: doctors, pending, error } = await useFetch<Doctor[]>('/data/doctors.json', {
+  server: true,     // fetch during SSR (so SEO bots get real content)
+  lazy: false,      // block until resolved
+  default: () => [] // initial value to avoid undefined during hydration
+})
+
+
+// pick the doctor marked as featured, fallback to first
+const featuredDoctor = computed(() => {
+  const all = doctors.value || []
+  return all.find(d => d.featured) ?? all[0] ?? null
+})
+
 type Hours = { day: string; open: string; close: string }
 type Clinic = {
   slug: string
@@ -100,13 +115,13 @@ useHead({
             Trusted Pediatric Care
           </div>
           <h1 class="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gray-900">
-            {{ doctor.name }}
+            {{ featuredDoctor?.name }}
           </h1>
           <p class="mt-2 text-base sm:text-lg text-gray-700">
-            {{ doctor.title }} · {{ doctor.specialization }}
+            {{ featuredDoctor?.title }} · {{ featuredDoctor?.specialization }}
           </p>
           <p class="mt-4 text-gray-600 max-w-2xl">
-            {{ doctor.bio }}
+            {{ featuredDoctor?.bio }}
           </p>
           <div class="mt-6 flex flex-wrap items-center gap-3">
             <NuxtLink
@@ -131,7 +146,7 @@ useHead({
           <div class="mx-auto aspect-[4/3] w-full max-w-md overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
             <!-- Placeholder doctor photo; replace with real image -->
             <img
-              :src="doctor.photo"
+              :src="featuredDoctor?.photo"
               alt="Portrait of the doctor"
               class="h-full w-full object-cover"
               loading="eager"

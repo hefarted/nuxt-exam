@@ -35,11 +35,6 @@ function submitForm() {
             <h2 class="text-xl font-semibold text-gray-900">Contact Information</h2>
             <p class="mt-2 text-gray-600">We’d love to hear from you.</p>
           </div>
-          <div class="space-y-3 text-sm text-gray-700">
-            <p><span class="font-medium">Phone:</span> (+63) 917 123 4567</p>
-            <p><span class="font-medium">Email:</span> info@clinic.ph</p>
-            <p><span class="font-medium">Address:</span> 9F Health Tower, 5th Ave, BGC, Taguig</p>
-          </div>
         </div>
 
         <!-- Contact Form -->
