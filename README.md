@@ -29,10 +29,17 @@ For this **exam project**, no database was used.
 
 ---
 
+## 🎨 Assets
+- All images (doctor photos, branding cover, logo) were **AI-generated** for this exam project.  
+- Assets are optimized and served from `/public/images`.  
+- In production, these should be replaced with real, verified assets.
+
+---
+
 ## 🛠️ Running the Project
 
 ### With Docker (recommended)
 ```bash
-git clone https://github.com/yourname/medprofile.git
+git clone https://github.com/hefarted/medprofile.git
 cd medprofile
 docker compose up --build
