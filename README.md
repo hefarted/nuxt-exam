@@ -40,6 +40,6 @@ For this **exam project**, no database was used.
 
 ### With Docker (recommended)
 ```bash
-git clone https://github.com/hefarted/medprofile.git
+git clone 
 cd medprofile
 docker compose up --build
