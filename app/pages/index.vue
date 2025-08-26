@@ -1,13 +1,19 @@
 <!-- /pages/index.vue -->
 <script setup lang="ts">
 import type { Doctor } from '../../types/doctor'
+import type { Hours, Institution } from '../../types/institution'
 
 const { data: doctors, pending, error } = await useFetch<Doctor[]>('/data/doctors.json', {
-  server: true,     // fetch during SSR (so SEO bots get real content)
+  server: false,     // fetch during SSR (so SEO bots get real content) false for exam purposes.
   lazy: false,      // block until resolved
   default: () => [] // initial value to avoid undefined during hydration
 })
 
+const { data: clinics }  = await useFetch<Institution[]>('/data/institutions.json', {   
+  server: false,     // fetch during SSR (so SEO bots get real content) false for exam purposes.
+  lazy: false,      // block until resolved
+  default: () => [] // initial value to avoid undefined during hydration
+})
 
 // pick the doctor marked as featured, fallback to first
 const featuredDoctor = computed(() => {
@@ -15,92 +21,48 @@ const featuredDoctor = computed(() => {
   return all.find(d => d.featured) ?? all[0] ?? null
 })
 
-type Hours = { day: string; open: string; close: string }
-type Clinic = {
-  slug: string
-  name: string
-  address: string
-  phone: string
-  email: string
-  description: string
-  hours: Hours[]
-  lat: number
-  lng: number
-}
+const siteName = 'MedConnect'
+const tagline = 'Trusted Healthcare Network in the Philippines'
+const description = 'MedConnect links patients to trusted doctors and clinics across Metro Manila. Find specialists, book appointments, and get quality healthcare guidance.'
 
-const doctor = {
-  name: 'Dr. Maria D. Santos',
-  title: 'MD, FPPS',
-  specialization: 'Pediatrician',
-  bio: `Board-certified pediatrician with over 10 years of experience in preventive care,
-  immunization programs, and child wellness counseling. Passionate about empowering
-  parents through clear, evidence-based guidance.`,
-  photo: '/images/dr-santos.jpg' // optional placeholder, replace with your asset
-}
-
-const clinics: Clinic[] = [
-  {
-    slug: 'healthway-bgc',
-    name: 'Healthway Clinic – BGC',
-    address: '9F Health Tower, 5th Ave, BGC, Taguig',
-    phone: '(+63) 917 123 4567',
-    email: 'bgc@healthway.ph',
-    description: 'Full-service outpatient clinic with child-friendly facilities.',
-    hours: [
-      { day: 'Mon–Fri', open: '09:00', close: '18:00' },
-      { day: 'Sat', open: '09:00', close: '14:00' },
-      { day: 'Sun', open: 'Closed', close: '' }
-    ],
-    lat: 14.5505, lng: 121.0490
-  },
-  {
-    slug: 'makati-med',
-    name: 'Makati Medical Center',
-    address: 'No. 2 Amorsolo St, Legazpi Village, Makati',
-    phone: '(+63) 2 8888 8999',
-    email: 'pediatrics@makatimed.ph',
-    description: 'Hospital clinic with diagnostics and emergency support.',
-    hours: [
-      { day: 'Mon–Fri', open: '10:00', close: '17:00' },
-      { day: 'Sat', open: '10:00', close: '13:00' },
-      { day: 'Sun', open: 'Closed', close: '' }
-    ],
-    lat: 14.5586, lng: 121.0183
-  }
-]
 
 // SEO / head
-useHead({
-  title: `${doctor.name} – ${doctor.specialization}`,
-  meta: [
-    { name: 'description', content: `Public profile of ${doctor.name}, ${doctor.title}. Clinics, schedule, and contact details.` },
-    { property: 'og:title', content: `${doctor.name} · ${doctor.specialization}` },
-    { property: 'og:description', content: `Clinics and schedule for ${doctor.name}. Book an appointment.` },
-    { property: 'og:type', content: 'website' }
-  ],
-  link: [
-    { rel: 'canonical', href: 'https://example.com/' } // update to your domain
-  ],
-  script: [
-    // Physician + first clinic structured data (expand as needed)
-    {
-      type: 'application/ld+json',
-      innerHTML: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'Physician',
-        name: doctor.name,
-        medicalSpecialty: doctor.specialization,
-        description: doctor.bio,
-        image: doctor.photo,
-        affiliatedHospital: clinics.map(c => ({
-          '@type': 'MedicalClinic',
-          name: c.name,
-          address: c.address,
-          telephone: c.phone
-        }))
-      })
-    }
-  ]
+// Apply SEO dynamically
+watchEffect(() => {
+  useSeoMeta({
+    title: `${siteName} — ${tagline}`,
+    description,
+    ogTitle: `${siteName} — ${tagline}`,
+    ogDescription: description,
+    ogImage: '/images/branding-cover.jpg', // put a site-wide cover/hero image in /public/images
+    ogType: 'website',
+    twitterCard: 'summary_large_image'
+  })
+
+  const url = useRequestURL()
+  useHead({
+    link: [{ rel: 'canonical', href: url.origin }],
+    script: [
+      {
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          name: siteName,
+          url: url.origin,
+          description: description,
+          publisher: {
+            '@type': 'Organization',
+            name: siteName,
+            logo: {
+              '@type': 'ImageObject',
+              url: `${url.origin}/images/logo.png`
+            }
+          }
+        })
+      }
+    ]
+  })
 })
 </script>
 
@@ -144,17 +106,19 @@ useHead({
 
         <div class="md:col-span-2">
           <div class="mx-auto aspect-[4/3] w-full max-w-md overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-            <!-- Placeholder doctor photo; replace with real image -->
-            <img
-              :src="featuredDoctor?.photo"
-              alt="Portrait of the doctor"
-              class="h-full w-full object-cover"
+            <NuxtImg
+              :src="featuredDoctor?.photo || '/images/doctor-placeholder.svg'"
+              :alt="`Portrait of ${featuredDoctor?.name || 'the doctor'}`"
+              preset="doctorHero"
+              placeholder="blur"
               loading="eager"
               fetchpriority="high"
               decoding="async"
+              class="h-full w-full object-cover"
             />
           </div>
         </div>
+
       </div>
     </section>
 

@@ -1,0 +1,62 @@
+[
+  {
+    "slug": "healthway-bgc",
+    "name": "Healthway Clinic – BGC",
+    "address": "9F Health Tower, 5th Ave, BGC, Taguig",
+    "phone": "(+63) 917 123 4567",
+    "email": "bgc@healthway.ph",
+    "description": "Full-service outpatient clinic with child-friendly facilities.",
+    "hours": [
+      { "day": "Mon–Fri", "open": "09:00", "close": "18:00" },
+      { "day": "Sat", "open": "09:00", "close": "14:00" },
+      { "day": "Sun", "open": "Closed", "close": "" }
+    ],
+    "lat": 14.5505,
+    "lng": 121.049
+  },
+  {
+    "slug": "makati-med",
+    "name": "Makati Medical Center",
+    "address": "No. 2 Amorsolo St, Legazpi Village, Makati",
+    "phone": "(+63) 2 8888 8999",
+    "email": "info@makatimed.ph",
+    "description": "Tertiary hospital with diagnostics, emergency care, and specialized departments.",
+    "hours": [
+      { "day": "Mon–Fri", "open": "08:00", "close": "17:00" },
+      { "day": "Sat", "open": "08:00", "close": "13:00" },
+      { "day": "Sun", "open": "Closed", "close": "" }
+    ],
+    "lat": 14.5586,
+    "lng": 121.0183
+  },
+  {
+    "slug": "heart-center",
+    "name": "Philippine Heart Center",
+    "address": "East Ave, Diliman, Quezon City",
+    "phone": "(+63) 2 8924 2441",
+    "email": "contact@heartcenter.ph",
+    "description": "Specialized center for cardiovascular diagnostics, treatment, and surgery.",
+    "hours": [
+      { "day": "Mon–Fri", "open": "08:00", "close": "17:00" },
+      { "day": "Sat", "open": "08:00", "close": "12:00" },
+      { "day": "Sun", "open": "Closed", "close": "" }
+    ],
+    "lat": 14.6475,
+    "lng": 121.0466
+  },
+  {
+    "slug": "derma-clinic",
+    "name": "Skin Health & Derma Clinic",
+    "address": "2F Wellness Tower, Ortigas Center, Pasig",
+    "phone": "(+63) 917 765 4321",
+    "email": "contact@dermaclinic.ph",
+    "description": "Modern dermatology clinic offering cosmetic and medical skin treatments.",
+    "hours": [
+      { "day": "Mon–Sat", "open": "10:00", "close": "18:00" },
+      { "day": "Sun", "open": "Closed", "close": "" }
+    ],
+    "lat": 14.5875,
+    "lng": 121.063
+  }
+ 
+]

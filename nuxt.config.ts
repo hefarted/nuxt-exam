@@ -13,4 +13,13 @@ export default defineNuxtConfig({
       Montserrat:true
     }
   },
+  image: {
+    quality: 70,
+    format: ['webp','avif'], // Nuxt Image will auto-serve modern formats
+    presets: {
+      doctorHero: {
+        modifiers: { width: 960, height: 720, fit: 'cover' } // 4:3 hero
+      }
+    }
+  }
 })
