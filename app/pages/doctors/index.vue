@@ -1,4 +1,15 @@
 <script setup lang="ts">
+
+import type { Doctor } from '../../../types/doctor'
+import type { Hours, Institution } from '../../../types/institution'
+
+const { data: doctors, pending, error } = await useFetch<Doctor[]>('/data/doctors.json', {
+  server: false,     // fetch during SSR (so SEO bots get real content) false for exam purposes.
+  lazy: false,      // block until resolved
+  default: () => [] // initial value to avoid undefined during hydration
+})
+
+
 useHead({
   title: 'Doctors',
   meta: [{ name: 'description', content: 'Browse doctors and view their profiles.' }],
@@ -6,11 +17,7 @@ useHead({
 })
 
 // placeholder doctors (no JSON yet)
-const doctors = [
-  { slug: 'dr-maria-d-santos', name: 'Dr. Maria D. Santos', title: 'MD, FPPS', specialization: 'Pediatrician' },
-  { slug: 'john-reyes', name: 'Dr. John Reyes', title: 'MD, FPSGS', specialization: 'General Surgery' },
-  { slug: 'ana-cruz', name: 'Dr. Ana Cruz', title: 'MD', specialization: 'Pediatrics' }
-]
+
 </script>
 
 <template>
