@@ -107,7 +107,7 @@ watchEffect(() => {
         <div class="md:col-span-2">
           <div class="mx-auto aspect-[4/3] w-full max-w-md overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
             <NuxtImg
-              :src="featuredDoctor?.photo || '/images/doctor-placeholder.svg'"
+              :src="featuredDoctor?.photo"
               :alt="`Portrait of ${featuredDoctor?.name || 'the doctor'}`"
               preset="doctorHero"
               placeholder="blur"
